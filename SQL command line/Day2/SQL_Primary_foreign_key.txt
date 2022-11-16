@@ -1,0 +1,45 @@
+create table product
+(
+pid number(2) primary key,
+name varchar2(10) not null,
+qty number(3) not null
+);
+
+insert into product
+values(10,'pen',100);
+
+insert into product
+values(11,'pencil',200);
+
+insert into product
+values(12,'paper',100);
+
+insert into product
+values(13,'glitterpen',50);
+
+==================================================
+
+create table product_details
+(
+pid number(2),
+price number(7,2) not null check(price>0),
+city varchar2(15) not null,
+foreign key(pid) references product(pid)
+);
+insert into product_details
+values(10,10,'pune');
+
+insert into product_details(price,city)
+values(150,'pune');
+
+insert into product_details
+values(11,5,'mumbai');
+
+insert into product_details
+values(12,10,'chennai');
+
+insert into product_details
+values(14,150,'kanpur');
+
+select product.pid,product.name,product.qty,product_details.price,product_details.city
+from product,product_details;
